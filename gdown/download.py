@@ -112,6 +112,7 @@ def download(
     format=None,
     user_agent=None,
     log_messages=None,
+    return_original_filename=False,
 ):
     """Download file from URL.
 
@@ -151,6 +152,8 @@ def download(
         Log messages to customize. Currently it supports:
         - 'start': the message to show the start of the download
         - 'output': the message to show the output filename
+    return_original_filename: bool, optional
+        Return the original filename from the URL. Default is False.
 
     Returns
     -------
@@ -358,4 +361,4 @@ def download(
     finally:
         sess.close()
 
-    return output
+    return output if not return_original_filename else (output, filename_from_url)
